@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Mim</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #f5f7fa, #c3cfe2);
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+        .profile-container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 50px auto;
+            display: flex;
+            align-items: center;
+        }
+        .profile-container img {
+            border-radius: 50%;
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            margin-right: 30px;
+        }
+        .profile-info h3 {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .profile-info p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .profile-info .info-item {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        .profile-info i {
+            color: #007bff;
+            margin-right: 10px;
+        }
+        h1, h2 {
+            font-weight: 700;
+            color: #333;
+        }
+        .list-group-item {
+            background: #ffffff;
+            border: none;
+            margin-bottom: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% load static %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Blog Django</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'postagens' %}">Index</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sobre' %}">Sobre</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <img src="{% static 'img/foto.jpg' %}" alt="Foto de Perfil">
+        <div class="profile-info">
+            <h3>{{ user.first_name }} {{ user.last_name }}</h3>
+            <div class="info-item"><i class="fas fa-birthday-cake"></i> <strong>Idade:</strong> 18 anos</div>
+            <div class="info-item"><i class="fas fa-briefcase"></i> <strong>Trabalho:</strong> Assistente de TI (atacarejo)</div>
+            <div class="info-item"><i class="fas fa-map-marker-alt"></i> <strong>Mora:</strong> Pau dos ferros</div>
+            <p>{{ user.bio }}</p>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <hr>
+
+        <h2 class="mb-3">Cursos</h2>
+        <ul class="list-group mb-4">
+            {% for curso in cursos %}
+            <li class="list-group-item">
+                <strong>{{ curso.nome }}</strong> - {{ curso.descricao }}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h2 class="mb-3">Gostos</h2>
+        <ul class="list-group">
+            {% for gosto in gostos %}
+            <li class="list-group-item">
+                {{ gosto.nome }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

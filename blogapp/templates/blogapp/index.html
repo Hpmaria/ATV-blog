@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postagens</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(120deg, #f5f7fa, #c3cfe2);
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+        .navbar {
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            margin-top: 50px;
+        }
+        h1 {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .card-img-top {
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            object-fit: cover;
+            height: 200px;
+        }
+        .card-body {
+            padding: 20px;
+        }
+        .card-title {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        .card-text {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Atividade Django</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'postagens' %}">Index</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'sobre' %}">Sobre</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1 class="text-center">Posts</h1>
+        <div class="row">
+            {% for postagem in postagens %}
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <img src="{{ postagem.imagem.url }}" class="card-img-top" alt="{{ postagem.titulo }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ postagem.titulo }}</h5>
+                        <p class="card-text">{{ postagem.conteudo }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
